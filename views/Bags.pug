@@ -1,0 +1,33 @@
+extends ./layout.pug
+
+
+
+block content
+
+  h1= title
+
+  p Welcome to #{title}
+
+      - var results = #{Bag};
+
+        div(class="container-fluid")
+
+   
+
+      each value,index in results
+
+           div(class="row", onclick=`buy(${index})`)
+
+                div(class="col-sm-2") #{value.Bag_type}
+
+                div(class="col-sm-2") #{value.Bag_Name}
+
+                div(class="col-sm-2") #{value.cost}
+
+  script.
+
+        function buy(cost){
+
+          alert('You purchased value ' + cost )
+
+        }

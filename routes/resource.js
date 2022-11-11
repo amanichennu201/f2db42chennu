@@ -11,19 +11,19 @@ router.get('/', api_controller.api);
 /// COSTUME ROUTES /// 
  
 // POST request for creating a Bag.  
-router.post('/Bag/:id', Bag_controller.Bag_create_post); 
+router.post('/Bags', Bag_controller.Bag_create_post); 
  
 // DELETE request to delete Bag. 
-router.delete('/Bag/:id', Bag_controller.Bag_delete); 
+router.delete('/Bags/:id', Bag_controller.Bag_delete); 
  
 // PUT request to update Bag. 
-router.put('/Bag/:id', Bag_controller.Bag_update_put); 
+router.put('/Bags/:id', Bag_controller.Bag_update_put); 
  
 // GET request for one Bag. 
-router.get('/Bag/:id', Bag_controller.Bag_detail); 
+router.get('/Bags/:id', Bag_controller.Bag_detail); 
  
 // GET request for list of all Bag items. 
-router.get('/Bag', Bag_controller.Bag_list); 
+router.get('/Bags', Bag_controller.Bag_list); 
  
 module.exports = router; 
  

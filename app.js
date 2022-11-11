@@ -26,7 +26,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var BagRouter = require('./routes/Bag');
 var gridBuildRouter = require('./routes/gridbuild');
-
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
 var app = express();
@@ -74,8 +73,8 @@ app.use(function(err, req, res, next) {
  
 } 
 
- let instance1 = new 
-Bag({Bag_type:"plastic",  Bag_Name:'safari', cost:1200}); 
+   let instance1 = new 
+   Bag({Bag_type:"plastic",  Bag_Name:'safari', cost:1200}); 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("First object saved") 
