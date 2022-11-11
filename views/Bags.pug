@@ -1,33 +1,14 @@
 extends ./layout.pug
 
-
-
 block content
-
-  h1= title
-
-  p Welcome to #{title}
-
-      - var results = #{Bag};
-
-        div(class="container-fluid")
-
-   
-
-      each value,index in results
-
-           div(class="row", onclick=`buy(${index})`)
-
-                div(class="col-sm-2") #{value.Bag_type}
-
-                div(class="col-sm-2") #{value.Bag_Name}
-
-                div(class="col-sm-2") #{value.cost}
-
-  script.
-
-        function buy(cost){
-
-          alert('You purchased value ' + cost )
-
+    h1= title
+    div.container-fluid
+        div.row  
+            each item, index in results 
+                div.col-sm-2(onclick=`buy(${index})`) Bag_type:#{item["Bag_type"]} <br> Bag_cost:#{item["Bag_cost"]} <br> Bag_Name:#{item["Bag_Name"]}
+           
+  
+    script.
+        function buy(cost) {
+            alert('You purchased item ' + cost );
         }
