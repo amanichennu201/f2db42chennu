@@ -78,3 +78,30 @@ exports.bag_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+// Handle Bag delete on DELETE. 
+exports.Bag_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Bag.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+
+ 
+ // Handle a show one view with id specified by query 
+ exports.Bag_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Bag.findById( req.query.id) 
+        res.render('Bagdetail',  
+{ title: 'Bag Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 

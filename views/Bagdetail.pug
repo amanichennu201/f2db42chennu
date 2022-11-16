@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Bagid = toShow._id 
+  - let Bag_type = toShow.Bag_type 
+  - let Bag_cost = toShow.cost 
+  - let Bag_Name = toShow.Name
+  div 
+    div.row 
+      div(class='BagAttr mr-3') Costume ID is: 
+      div #{Bagid} 
+    div.row 
+      div(class='BagAttr mr-3') Costume Type is: 
+      div #{Bag_type} 
+    div.row 
+      div(class='BagAttr mr-3') Costume Name is: 
+      div #{Bag_Name} 
+    div.row 
+      div(class='BagAttr mr-3') Costume Cost is: 
+      div #{Bag_cost} 
