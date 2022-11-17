@@ -1,24 +1,27 @@
 extends layout
 block content
   h1= title
-  - let bagid = toShow._id
-  - let bag_type = toShow.bag_type
-  - let bag_cost = toShow.bag_cost
-  - let bag_Name = toShow.bag_Name
-  - let actionid = "/resource/bags/" + bagid
+  if (toshow == null)
+    h2 No instance to update 
+  else
+  - let Bagid = toShow._id
+  - let Bag_type = toShow.Bag_type
+  - let Bag_cost = toShow.Bag_cost
+  - let Bag_Name = toShow.Bag_Name
+  - let actionid = "/resource/Bags/" + Bagid
   div.row(class='mb-2') 
     div.mr-1 ID is 
-    div #{bagid} 
-  form(id='bagForm', action=actionid, method="PUT")
+    div #{Bagid} 
+  form(id='BagForm', action=actionid, method="PUT")
    div.form-group
-    label.bagAttr(for='bag_brand') bag Brand
-    input#bag_type(type='text', name='bag_brand')
+    label.BagAttr(for='Bag_type') Bag type
+    input#Bag_type(type='text', name='Bag_type')
    div.form-group
-    label.bagAttr(for='bag_cost') bag Cost
-    input#bag_cost(type='number', name='bag_cost')
+    label.BagAttr(for='bag_cost') Bag Cost
+    input#Bag_cost(type='number', name='Bag_cost')
    div.form-group
-    label.bagAttr(for='watch_color') bag Name
-    input#bag_Name(type='text', name='bag_Name')
+    label.BagAttr(for='Bag_Name') Bag Name
+    input#Bag_Name(type='text', name='Bag_Name')
    input(type="submit")
   script.
     document.forms['Form'].addEventListener('submit', (event) => {
