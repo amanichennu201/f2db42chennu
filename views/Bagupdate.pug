@@ -1,43 +1,39 @@
 extends layout
 block content
-h1= title
- if (toShow == null)
-    h2 No instance to update
- else
+  h1= title
   - let Bagid = toShow._id
   - let Bag_type = toShow.Bag_type
-  - let Bag_cost = toShow.Bag_cost
   - let Bag_Name = toShow.Bag_Name
+  - let Bag_cost = toShow.cost
   - let actionid = "/resource/Bags/" + Bagid
-    div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{Bagid}  
-form(id='BagForm', action=actionid, method="PUT")
-   div.form-group
-    label.BagAttr(for='Bag_type') Bag type
-    input#Bag_type(type='text', name='Bag_type')
-   div.form-group
-    label.BagAttr(for='Bag_cost') Bag cost
-    input#Bag_cost(type='number', name='Bag_cost')
-   div.form-group
-    label.BagAttr(for='Bag_Name') Bag Name
-    input#Bag_Name(type='text', name='Bag_Name')
-   input(type="submit")
-  script.
-    document.forms['BagForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-       method: 'PUT',
-       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-       return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-       alert("Save succeded")
-       // TODO handle body
-      }).catch((error) => {
-       // TODO handle error
-       alert("Save failed " + error )
-      });
-     });
-
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{Bagid} 
+  form(id='BagForm', action=actionid, method="PUT")
+   div.form-group
+    label.BagAttr(for='Bag_type') Bag type
+    input#Bag_type(type='text', name='Bag_type')
+   div.form-group
+    label.BagAttr(for='Bag_Name') Bag Name
+    input#Bag_Name(type='text', name='Bag_Name')
+   div.form-group
+    label.BagAttr(for='Bag_cost') Bag Cost
+    input#Bag_cost(type='number', name='Bag_cost')
+   input(type="submit")
+  script.
+    document.forms['BagForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+       method: 'PUT',
+       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+       return resp.text(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+       alert("Save succeded")
+       // TODO handle body
+      }).catch((error) => {
+       // TODO handle error
+       alert("Save failed " + error )
+      });
+     });
