@@ -1,0 +1,39 @@
+extends layout
+block content
+  h1= title
+  - let bagid = toShow._id
+  - let bag_type = toShow.bag_type
+  - let bag_cost = toShow.bag_cost
+  - let bag_Name = toShow.bag_Name
+  - let actionid = "/resource/bags/" + bagid
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{bagid} 
+  form(id='bagForm', action=actionid, method="PUT")
+   div.form-group
+    label.bagAttr(for='bag_brand') bag Brand
+    input#bag_type(type='text', name='bag_brand')
+   div.form-group
+    label.bagAttr(for='bag_cost') bag Cost
+    input#bag_cost(type='number', name='bag_cost')
+   div.form-group
+    label.bagAttr(for='watch_color') bag Name
+    input#bag_Name(type='text', name='bag_Name')
+   input(type="submit")
+  script.
+    document.forms['Form'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+       method: 'PUT',
+       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+       return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+       alert("Save succeded")
+       // TODO handle body
+      }).catch((error) => {
+       // TODO handle error
+       alert("Save failed " + error )
+      });
+     });
