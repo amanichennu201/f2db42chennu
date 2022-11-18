@@ -2,7 +2,10 @@ extends layout
  
 block content 
   h1= title 
-    - let Bagid = toShow._id 
+   if (toShow == null)
+    h2 No instance to update
+else
+   - let Bagid = toShow._id 
     - let Bag_type = toShow.Bag_type
     - let Bag_cost = toShow.cost
     - let Bag_Name = toShow.Bag_Name

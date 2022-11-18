@@ -1,14 +1,16 @@
-extends ./layout.pug
+extends layout
 
 block content
     h1= title
-    div.container-fluid
-        div.row  
-            each item, index in results 
-                div.col-sm-2(onclick=`buy(${index})`) Bag_type:#{item["Bag_type"]} <br> Bag_cost:#{item["Bag_cost"]} <br> Bag_Name:#{item["Bag_Name"]}
+    - iet Bag = results;
+        div(class="container-fluid")
+         div(class="row m-1")
+            each item in Bag 
+             - let destination = `dispatch(\"/Bag/update?id=${item._id}\")`
+                div(class="row-sm-2",class="m-1") Bag_type:#{item["Bag_type"]} <br> Bag_cost:#{item["Bag_cost"]} <br> Bag_Name:#{item["Bag_Name"]}
+                  button.btn(class="btn-primary m1-1", onclick= destination) update
            
-  
-    script.
-        function buy(cost) {
-            alert('You purchased item ' + cost );
+     script.
+        function buy(path) {
+         window.location.href=path;
         }
