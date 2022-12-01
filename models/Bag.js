@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 const bagSchema = mongoose.Schema({
-Bag_type: String,
-Bag_Name: String,
-cost: Number
-})
-module.exports = mongoose.model("Bag",
-bagSchema)
+    Bag_type: {type:String,minLength: 2},     
+    Bag_Name: {type:String},
+    Bag_cost: { type: Number, min: 10, max: 1000 }
+}) 
+ 
+module.exports = mongoose.model("Bag", bagSchema)

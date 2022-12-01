@@ -2,14 +2,25 @@ extends layout
 
 block content
     h1= title
-    - let Bag = results;
-        div(class="container-fluid")
+    - let Bag = results 
+    - let create = `dispatch(\"/Bag/create\")`
+    button.btn( class="btn-info ml-1", onclick= create) Create
+    div(class="container-fluid mt-3")
          div(class="row m-1")
-            each item in Bag 
-             - let destination = `dispatch(\"/Bag/update?id=${item._id}\")`
-                div(class="row-sm-2",class="m-1") Bag_type:#{item["Bag_type"]} <br> Bag_cost:#{item["Bag_cost"]} <br> Bag_Name:#{item["Bag_Name"]}
-                  button.btn(class="btn-primary m1-1", onclick= destination) update
-           
-        script.
-            function dispatch(path) {
-                 window.location.href=path;}
+            each B,index in Bag
+                - let destination = `dispatch(\"/Bag/update?id=${B._id}\")` 
+                - let detail = `dispatch(\"/Bag/detail?id=${B._id}\")` 
+                - let deleteItem = `dispatch(\"/Bag/delete?id=${B._id}\")` 
+                div(class="row-sm-2", class="m-1") #{B.Bag_type}, #{B.Bag_Name}, #{B.Bag_cost}
+            
+                p
+                button.btn( class="btn-primary ml-1", onclick= destination) Update 
+                p
+                button.btn( class="btn-primary ml-1", onclick= detail) Detail
+                p 
+                button.btn( class="btn-primary ml-1", onclick= deleteItem) Delete 
+
+    script. 
+       function dispatch(path) { 
+         window.location.href=path 
+        }
